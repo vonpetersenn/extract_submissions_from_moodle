@@ -1,16 +1,40 @@
 # Project Title: PDF File Copier
 
-This Python script copies PDF files from subfolders with a specified specifier. It's designed to work with a .zip file that you get when you download all submissions of an assignment from Moodle. Each .zip file contains a folder of subfolders. Each subfolder, formatted as 'Firstname Name_number_assignesubmission_file', represents a student and is assumed to contain a single .pdf or .PDF file.
+This simple Python script takes a zip folder of submissions from Moodle and returns all the submissions with meaningful filenames. A batch of submissions from students with arbitrary filenames will be extracted from the zip folder and returned in a coherent format:
+```
+FirstName1 MiddleName1 LastName1 Assignment.pdf
+FirstName2 MiddleName2 LastName2 Assignment.pdf
+...
+```
 
-This script automates the process of extracting individual student submissions from the downloaded .zip file. Instead of manually going through each subfolder to find and copy the PDF file, or using the Moodle page and downloading each assignment one by one.
+## Installation
+Option a) Download repository.
 
-## How to Use
 
-1. Place your .zip file in the 'input' folder.
-2. Run the script using the command `python main.py` in the shell.
-3. If you want to add a string to the end of the pdf name, use the --append argument. For example, python main.py --append _assignment1.
+Option b) Copy `main.py` file to a folder with the structure 
+```
+root/
+├── main.py
+├── input/
+└── output/
+```
+## Usage
+1. download all submissions from moodle as a zip-file (using the `Alle Abgaben Herunterladen`-button).
+2. place the zip-file in the `input` folder
+3. run the following command in the terminal from the root-folder 
+```shell 
+python main.py
+``` 
+or
+```shell
+python main.py --append " AssignmentTitle"
+```
 
-The script will copy all PDF files from the subfolders into the 'output' folder, appending the specified string to the end of each file name.
+The PDF files will be copied to the `output` folder.
+
+## Limitations
+- The script assumes that the submission of every student is a single pdf file.
+- If moodle changes the structure of the zip-file, the script will no longer work.
 
 ## Requirements
 - Python 3.x
